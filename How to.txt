@@ -1,0 +1,44 @@
+
+
+
+
+# Preparer le Raspberry
+########################
+Install GPIO zero
+    sudo apt install python3-gpiozero
+
+Activate I2C
+    sudo apt-get install -y python-smbus
+    puis dans sudo raspi-config activer I2C
+
+Voir les devices I2C connectés au bus
+    sudo i2cdetect -y 1
+
+# Préparer l'environnement
+##########################
+
+installer pip
+	sudo apt install python3.pip
+
+Créer un venv (dans le repertoire du projet)
+ virtualenv venv
+
+Activer le venv (dans le repertoire du projet)
+ source venv/bin/activate
+
+Desactiver le venv 
+ deactivate
+
+installer Library Motokit Adafruit
+    pip3 install adafruit-circuitpython-motorkit
+
+Doc de la Library
+    https://circuitpython.readthedocs.io/projects/motorkit/en/latest/
+
+
+# Démarrer le serveur flask
+###########################
+Démarrer le serveur flask
+ export FLASK_APP=stepper.py
+ export FLASK_ENV=development
+ flask run --host=0.0.0.0
