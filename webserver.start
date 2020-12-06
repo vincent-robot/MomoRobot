@@ -1,0 +1,5 @@
+#rm -v webserver/__pycache__/*
+#rm -v webserver/app/__pycache__/*
+export FLASK_APP=webserver
+export FLASK_ENV=development
+flask run --host=0.0.0.0

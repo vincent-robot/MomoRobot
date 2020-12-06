@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Stepper Manager</title>
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Feuille de styles génériques -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css">  
+
+    <style type="text/css">
+        form { position: relative; }
+        input[type="range"] {
+            position: relative;
+            margin-left: 1em;
+        }
+        input[type="range"]:after, input[type="range"]:before {
+            position: absolute;
+            top: 1em;
+            color: #aaa;
+        }
+        input[type="range"]:before {
+            left:0em; 
+            content: attr(min);
+        }
+        input[type="range"]:after {
+            right: 0em;
+            content: attr(max);
+        }
+        output {
+            position: absolute;
+            top: 35px; left: 70px;
+        }
+        </style>       
+
+</head>
+<body>
+    <h1> MOMOROBOT  </h1>
+    <h1> Manual workout </h1>
+    <div id="wrap">
+    <br /><br /><br /><br />
+  
+    <form action="/manual" method="get" id="myform">
+        <label for="position"> Position </label>
+        <input type="range" id="position" name="position" value="{{position}}" max="100" min="0" step="5" onchange="submit_function()"> 
+        <br /><br /><br />
+        <input type="radio" id="Forward" name="direction" value="1" {{checked_forward}} onchange="submit_function()">
+        <label for="avant">Forward</label><br>
+        <input type="radio" id="Reward" name="direction" value="2" {{checked_backward}} onchange="submit_function()">
+        <label for="avant">Reward</label><br>
+
+        <br /><br /><br /><br />
+        <input type="submit" value="Submit">
+
+    </form>
+    
+    
+    <p> {{date_du_jour}} </p>
+
+    <script>
+        function submit_function() {
+            document.getElementById("myform").submit();
+        }
+    </script>
+</body>
