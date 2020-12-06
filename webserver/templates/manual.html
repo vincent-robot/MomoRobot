@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Momorobot Manager</title>
     <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     <!-- Feuille de styles génériques -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css">  
@@ -43,28 +46,18 @@
     <div id="wrap">
     <br /><br /><br /><br />
   
-    <div id="joy1Div"  style="width:400px;height:400px;margin-bottom:20px;"> </div>
-        Position X:<input id="joy1PosizioneX" type="text" /><br />
-        Position Y:<input id="joy1PosizioneY" type="text" /><br />
-        Direction:<input id="joy1Direzione" type="text" /><br />
-        X :<input id="joy1X" type="text" /></br>
-        Y :<input id="joy1Y" type="text" />
+    <form action="/manual" method="get" id="myform"></form>
+    <div id="joy1Div"  style="width:400px;height:400px;"> </div>
+        X :<input id="joy1X" type="text" onchange="submit_function()"/></br>
+        Y :<input id="joy1Y" type="text" onchange="submit_function()"/></br>
     </div>
 
     <br /><br /><br /><br />
-    <form action="/manual" method="get" id="myform">
-        <label for="position"> Position </label>
-        <input type="range" id="position" name="position" value="{{position}}" max="100" min="0" step="5" onchange="submit_function()"> 
-        <br /><br /><br />
-        <input type="radio" id="Forward" name="direction" value="1" {{checked_forward}} onchange="submit_function()">
-        <label for="avant">Forward</label><br>
-        <input type="radio" id="Reward" name="direction" value="2" {{checked_backward}} onchange="submit_function()">
-        <label for="avant">Reward</label><br>
-
-        <br /><br /><br /><br />
+    
         <input type="submit" value="Submit">
 
-    </form>
+    </form>    
+    
     
 
     <p> {{date_du_jour}} </p>
@@ -72,19 +65,24 @@
     <script type="text/javascript">
         var Joy1 = new JoyStick('joy1Div');
 
-        var joy1IinputPosX = document.getElementById("joy1PosizioneX");
-        var joy1InputPosY = document.getElementById("joy1PosizioneY");
-        var joy1Direzione = document.getElementById("joy1Direzione");
         var joy1X = document.getElementById("joy1X");
         var joy1Y = document.getElementById("joy1Y");
 
-        setInterval(function(){ joy1IinputPosX.value=Joy1.GetPosX(); }, 50);
-        setInterval(function(){ joy1InputPosY.value=Joy1.GetPosY(); }, 50);
-        setInterval(function(){ joy1Direzione.value=Joy1.GetDir(); }, 50);
-        setInterval(function(){ joy1X.value=Joy1.GetX(); }, 50);
-        setInterval(function(){ joy1Y.value=Joy1.GetY(); }, 50);
+        /*
+        setTimeout(update, 100);
+        */
+       
+        setInterval(function(){ joy1X.value=Joy1.GetX(); }, 100);
+        setInterval(function(){ joy1Y.value=Joy1.GetY(); }, 100);
+        
+    
+        function update() {
+            joy1Y.value=Joy1.GetY();
+            joy1X.value=Joy1.GetX();
+        }
+    
 
-
+      
         function submit_function() {
             document.getElementById("myform").submit();
         }
