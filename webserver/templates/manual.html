@@ -68,17 +68,14 @@
         var joy1X = document.getElementById("joy1X");
         var joy1Y = document.getElementById("joy1Y");
 
-        /*
-        setTimeout(update, 100);
-        */
-       
-        setInterval(function(){ joy1X.value=Joy1.GetX(); }, 100);
-        setInterval(function(){ joy1Y.value=Joy1.GetY(); }, 100);
         
-    
+        setInterval(update, 1000);
+        
+  
         function update() {
             joy1Y.value=Joy1.GetY();
             joy1X.value=Joy1.GetX();
+            document.getElementById("myform").submit();
         }
     
 
