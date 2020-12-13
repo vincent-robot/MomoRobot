@@ -79,7 +79,7 @@ var JoyStick = (function(container, parameters)
 	
 	var pressed = 0; // Bool - 1=Yes - 0=No
     var circumference = 2 * Math.PI;
-    var internalRadius = (canvas.width-((canvas.width/2)+60))/2;
+    var internalRadius = (canvas.width-((canvas.width/2)+10))/2;
 	var maxMoveStick = internalRadius + 5;
 	var externalRadius = internalRadius + 60;
 	var centerX = canvas.width / 2;

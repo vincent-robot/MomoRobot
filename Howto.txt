@@ -14,6 +14,16 @@ Activate I2C
 Voir les devices I2C connectés au bus
     sudo i2cdetect -y 1
 
+Activer camera
+    sudo raspi-config activer I2C
+
+Installer Motion
+    sudo apt-get install motion
+
+Charger module compatibilité video linux avec camera pi
+    sudo modprobe bcm2835-v4l2
+    echo "bcm2835-v4l2" | sudo tee -a /etc/modules
+
 # Préparer l'environnement
 ##########################
 
