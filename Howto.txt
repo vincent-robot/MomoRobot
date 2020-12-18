@@ -24,6 +24,17 @@ Charger module compatibilité video linux avec camera pi
     sudo modprobe bcm2835-v4l2
     echo "bcm2835-v4l2" | sudo tee -a /etc/modules
 
+Installer UserMode Video4 Linux (UV4L)
+    curl https://www.linux-projects.org/listing/uv4l_repo/lpkey.asc | sudo apt-key add -
+    ajout repo dans /etc/apt/sources.list
+        deb https://www.linux-projects.org/listing/uv4l_repo/raspbian/stretch stretch main
+    sudo apt-get install uv4l uv4l-raspicam
+    sudo apt-get install uv4l-raspicam-extras
+    sudo apt-get install uv4l-server
+    Modifier mémoire pour GPU dans raspi-config
+pour redamarrer UV4L
+    sudo service uv4l_raspicam restart
+
 # Préparer l'environnement
 ##########################
 
