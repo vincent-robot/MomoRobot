@@ -42,8 +42,27 @@ class Robot:
         angle  = math.atan2(joy_x, joy_y) * 180 / math.pi
         #print('[Robot - differential] - angle vecteur : ' + str(angle))
 
-        # calculate premix drive  dur to Joystick Y input
-        if joy_y > 0 and joy_x !=0 :
+        # calculate premix drive  due to Joystick Y input
+        if abs(joy_y) >= abs(joy_x) and joy_y != 0:
+            if joy_x >= 0:
+                premix_l = joy_y 
+                premix_r = joy_y - joy_x * joy_y / abs(joy_y)
+            elif joy_x < 0:
+                premix_r = joy_y 
+                premix_l = joy_y + joy_x * joy_y / abs(joy_y)
+        elif abs(joy_y) < abs(joy_x) and joy_x != 0:
+            if joy_x >= 0:
+                premix_l = joy_y 
+                premix_r = joy_y - joy_x * abs(joy_y / joy_x)
+            elif joy_x < 0:
+                premix_r = joy_y 
+                premix_l = joy_y + joy_x * abs(joy_y / joy_x)
+        else:
+            premix_r = 0 
+            premix_l = 0
+
+
+        """if joy_y > 0 and joy_x !=0 :
             if joy_x > 0:
                 premix_l = joy_y 
                 premix_r = joy_y - joy_x * abs(joy_y / joy_x)
@@ -60,7 +79,7 @@ class Robot:
         else:
             premix_r = joy_y
             premix_l = joy_y 
-     
+        """
     
         # calculate pivot amount
         #piv_speed = nJoyX
