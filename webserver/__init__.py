@@ -23,5 +23,6 @@ socketio.run(webserver, port=5000,host='0.0.0.0',debug=True)
 
 
 
-webserver.logger.info('first test message...')
+webserver.logger.info('Arret des moteur et sortie')
+mon_robot.set_ordre_moteur(0,0)
 
