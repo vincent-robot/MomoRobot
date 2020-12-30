@@ -3,6 +3,20 @@ import math
 from datetime import datetime
 from adafruit_motorkit import MotorKit
 
+def lin2log(x):
+    """ Return logatitmic value of the given x provided as an input
+    
+    Keyword arguments:
+    x : input to be transformed [x0..x1]
+    """
+    x0 = 1
+    x1 = 100
+
+    if x < x0 or x > x1:
+        raise ValueError ("Input must be beetween %s and %s" %(x0, x1))
+
+    scale = (math.log(x1)-math.log(x0)) / (x1 - x0)
+    return round(math.exp((x-x0) * scale))
 
 
 class Robot:
@@ -23,21 +37,26 @@ class Robot:
 
 
     def vector_to_differential(self, joy_x, joy_y):
-        # CONFIG
-        # - fPivYLimit : The threshold at which the pivot action starts
-        #                This threshold is measured in units on the Y-axis
-        #                away from the X-axis (Y=0). A greater value will assign
-        #                more of the joystick's range to pivot actions.
-        #                Allowable range: (0..+100)
-        
+        """ Transform Joystick coordinate to differential throtlle for L and R motor
+
+        Keyword arguments:
+        joy_x : Joystick x position (-100..100)
+        joy_y : Joystick y position (-100..100)
+        """
+
         dead_zone = 10   # Put joy_x and joy_y to 0 if within the dead zone
+        
+        joy_x = min(joy_x, 100)
+        joy_y = min(joy_y, 100)
 
         
         # deadzone area
         if abs(joy_x) < dead_zone and abs(joy_y) < dead_zone:
             joy_x = 0
             joy_y = 0
-
+        #else:
+        #    joy_y = math.exp((joy_y-1) * 0.0465)
+        #    joy_x = math.exp((joy_x-1) * 0.0465)
         # calculate vector
         angle  = math.atan2(joy_x, joy_y) * 180 / math.pi
         #print('[Robot - differential] - angle vecteur : ' + str(angle))
@@ -50,56 +69,21 @@ class Robot:
             elif joy_x < 0:
                 premix_r = joy_y 
                 premix_l = joy_y + joy_x * joy_y / abs(joy_y)
-        elif abs(joy_y) < abs(joy_x) and joy_x != 0:
+        elif abs(joy_y) < abs(joy_x) and joy_x != 0:        
             if joy_x >= 0:
-                premix_l = joy_y 
-                premix_r = joy_y - joy_x * abs(joy_y / joy_x)
+                premix_l = joy_x /2
+                premix_r = - joy_x /2
             elif joy_x < 0:
-                premix_r = joy_y 
-                premix_l = joy_y + joy_x * abs(joy_y / joy_x)
+                premix_r = -joy_x / 2
+                premix_l = joy_x / 2
         else:
             premix_r = 0 
             premix_l = 0
 
-
-        """if joy_y > 0 and joy_x !=0 :
-            if joy_x > 0:
-                premix_l = joy_y 
-                premix_r = joy_y - joy_x * abs(joy_y / joy_x)
-            elif joy_x < 0:
-                premix_r = joy_y 
-                premix_l = joy_y + joy_x * abs(joy_y / joy_x)
-        elif joy_y < 0 and joy_x !=0:
-            if joy_x > 0:
-                premix_l = joy_y 
-                premix_r = joy_y + joy_x * abs(joy_y / joy_x)
-            elif joy_x < 0:
-                premix_r = joy_y 
-                premix_l = joy_y - joy_x * abs(joy_y / joy_x)
-        else:
-            premix_r = joy_y
-            premix_l = joy_y 
-        """
-    
-        # calculate pivot amount
-        #piv_speed = nJoyX
-        #fPivScale = 0.0 if abs(nJoyY)>fPivYLimit else 1.0-abs(nJoyY)/fPivYLimit
-        
-
-        """
-        # Calculate final mix of Drive and Pivot
-        nMotMixL = ((1.0-fPivScale)*nMotPremixL + fPivScale*( nPivSpeed))/100 # Motor (left)  mixed output           (-128..+127)
-        nMotMixR = ((1.0-fPivScale)*nMotPremixR + fPivScale*(-nPivSpeed))/100 # Motor (right) mixed output           (-128..+127)
-        """
-
         print('Cmd X Y - Mot G D : ' + str(joy_x) + " " + str(joy_y) + " - " + str(premix_l) + " " + str(premix_r))
-         
-        #if nMotMixR !=0 :
-        #print('[Robot - differential] - Commande moteur D G : ' + str(premix_r) + " " + str(premix_l))
-            #print('[Robot - differential] - Commande moteur D G : ' + str(MotMixR) + " " + str(MotMixL))
 
-        return (premix_l, premix_r)
-        #self.set_ordre_moteur(premix_l/100, premix_r/100)
+        #return (premix_l, premix_r)
+        self.set_ordre_moteur(premix_l/100, premix_r/100)
 
        
 
