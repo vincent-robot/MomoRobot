@@ -54,14 +54,16 @@ class Robot:
         if abs(joy_x) < dead_zone and abs(joy_y) < dead_zone:
             joy_x = 0
             joy_y = 0
-        #else:
-        #    joy_y = math.exp((joy_y-1) * 0.0465)
-        #    joy_x = math.exp((joy_x-1) * 0.0465)
-        # calculate vector
-        angle  = math.atan2(joy_x, joy_y) * 180 / math.pi
+        #otherwise chanage x axis on log scale
+        else:
+            if joy_x > 0:
+                joy_x = lin2log(joy_x)
+            elif joy_x < 0:
+                joy_x = - lin2log(abs(joy_x))
+        #angle  = math.atan2(joy_x, joy_y) * 180 / math.pi
         #print('[Robot - differential] - angle vecteur : ' + str(angle))
 
-        # calculate premix drive  due to Joystick Y input
+        # calculate drive forward / reward (both motor in the same direction)
         if abs(joy_y) >= abs(joy_x) and joy_y != 0:
             if joy_x >= 0:
                 premix_l = joy_y 
@@ -69,6 +71,7 @@ class Robot:
             elif joy_x < 0:
                 premix_r = joy_y 
                 premix_l = joy_y + joy_x * joy_y / abs(joy_y)
+        # calculate drive for rotation (revert motor)
         elif abs(joy_y) < abs(joy_x) and joy_x != 0:        
             if joy_x >= 0:
                 premix_l = joy_x /2
@@ -82,8 +85,8 @@ class Robot:
 
         print('Cmd X Y - Mot G D : ' + str(joy_x) + " " + str(joy_y) + " - " + str(premix_l) + " " + str(premix_r))
 
-        #return (premix_l, premix_r)
-        self.set_ordre_moteur(premix_l/100, premix_r/100)
+        return (premix_l, premix_r)
+        #self.set_ordre_moteur(premix_l/100, premix_r/100)
 
        
 
