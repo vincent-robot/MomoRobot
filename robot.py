@@ -51,15 +51,16 @@ class Robot:
 
         
         # deadzone area
-        if abs(joy_x) < dead_zone and abs(joy_y) < dead_zone:
+        if abs(joy_x) < dead_zone: 
             joy_x = 0
+        if abs(joy_y) < dead_zone:
             joy_y = 0
         #otherwise chanage x axis on log scale
-        else:
-            if joy_x > 0:
-                joy_x = lin2log(joy_x)
-            elif joy_x < 0:
-                joy_x = - lin2log(abs(joy_x))
+        if joy_x > 0:
+            joy_x = (lin2log(joy_x) * joy_x) / 2
+        elif joy_x < 0:
+            joy_x = (lin2log(abs(joy_x)) * joy_x)/ 2
+        
         #angle  = math.atan2(joy_x, joy_y) * 180 / math.pi
         #print('[Robot - differential] - angle vecteur : ' + str(angle))
 
