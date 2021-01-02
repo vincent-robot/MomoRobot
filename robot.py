@@ -57,9 +57,9 @@ class Robot:
             joy_y = 0
         #otherwise chanage x axis on log scale
         if joy_x > 0:
-            joy_x = (lin2log(joy_x) * joy_x) / 2
+            joy_x = (lin2log(joy_x) + joy_x) / 2
         elif joy_x < 0:
-            joy_x = (lin2log(abs(joy_x)) * joy_x)/ 2
+            joy_x = - (lin2log(abs(joy_x)) + abs(joy_x))/ 2
         
         #angle  = math.atan2(joy_x, joy_y) * 180 / math.pi
         #print('[Robot - differential] - angle vecteur : ' + str(angle))
@@ -86,8 +86,8 @@ class Robot:
 
         print('Cmd X Y - Mot G D : ' + str(joy_x) + " " + str(joy_y) + " - " + str(premix_l) + " " + str(premix_r))
 
-        return (premix_l, premix_r)
-        #self.set_ordre_moteur(premix_l/100, premix_r/100)
+        #return (premix_l, premix_r)
+        self.set_ordre_moteur(premix_l/100, premix_r/100)
 
        
 
