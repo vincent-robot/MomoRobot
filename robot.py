@@ -22,6 +22,10 @@ def lin2log(x):
 class Robot:
     def __init__(self):
         self.kit = MotorKit()
+        self.requested_left = 0
+        self.requested_right = 0
+
+
 
     def set_ordre_moteur(self,  gauche, droite):
         """ Send order to motor accouding to methos input
@@ -29,9 +33,15 @@ class Robot:
         Keyword arguments:
         gauche : throtlle moteur gauche (-1..1)
         droite : throtlle moteur droite (-1..1)
+        
+        if gauche != 0:
+            gauche = gauche * 0.1 + 0.6 * abs(gauche) / gauche
+        if droite != 0:
+            droite = droite * 0.1 + 0.4 * abs(droite) / droite
         """
-        #print('[Robot - Commande moteur] - : Droite = ' + str(gauche) + " + Gauche = " + str(droite))
-        self.kit.motor1.throttle = -droite
+        print('[Robot - Commande moteur] - : Droite = ' + str(gauche) + " + Gauche = " + str(droite))
+               
+        self.kit.motor1.throttle = droite
         self.kit.motor2.throttle = gauche
 
 

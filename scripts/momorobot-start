@@ -1,0 +1,9 @@
+#!/bin/bash
+# This script start momorobot
+
+echo "starting Momorobot.... "
+cd ~
+cd momorobot/momorobot
+source venv/bin/activate
+python main.py
+
