@@ -11,7 +11,7 @@ class pid_driver:
         self.m2_speed = 0       
     
     def set(_self, request_left, request_right):
-        prin("hello")
+        print("hello")
 
 
 
