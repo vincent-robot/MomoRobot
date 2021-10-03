@@ -17,10 +17,7 @@ from webserver import routes
 from webserver import mes_websocket
 
 
-
-
 socketio.run(webserver, port=5000,host='0.0.0.0',debug=True)
-
 
 
 webserver.logger.info('Arret des moteur et sortie')

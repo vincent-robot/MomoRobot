@@ -3,6 +3,8 @@ import math
 from datetime import datetime
 from adafruit_motorkit import MotorKit
 
+#hello
+
 def lin2log(x):
     """ Return logatitmic value of the given x provided as an input
     
