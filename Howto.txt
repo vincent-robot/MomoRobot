@@ -63,3 +63,50 @@ Démarrer le serveur flask
  export FLASK_APP=stepper.py
  export FLASK_ENV=development
  flask run --host=0.0.0.0
+
+
+#instaler ros2 
+sur une base ubuntu 20.04
+
+    Make sure to execute the commands in the order.
+
+    Setup locale
+    sudo locale-gen en_US en_US.UTF-8
+    sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    Setup sources
+    sudo apt update && sudo apt install curl gnupg2 lsb-release
+    curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+    sudo sh -c 'echo "deb [arch=$(dpkg --print-architecture)] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2-latest.list'
+    Install ROS2 core packages
+    Now that you have added the ROS2 repository to your sources list, update.
+
+    sudo apt update
+    And now you can install ROS2.
+
+    Important: here we won’t install ros-foxy-desktop, we’ll install ros-foxy-ros-base, which contains no GUI tools, just the bare minimum you need to write and execute your ROS2 programs.
+
+    sudo apt install ros-foxy-ros-base
+    The ros-foxy-ros-base package is in fact a collection of many other packages, so the list of stuff to install will be pretty big. This step may take a few minutes to complete.
+
+    Install colcon (build tool)
+    After you’ll write some ROS2 code into your own packages, you’ll need to build those packages.
+
+    ROS2 uses colcon as a build tool (and ament as the build system). When you only install the ROS2 core packages, colcon is not here, so install it manually.
+
+    sudo apt install python3-colcon-common-extensions
+    Auto-completion for ROS2 command line tools
+    ROS2 comes with a lot of useful command line tools, and if you want to be able to use auto-completion for those tools, you’ll need to install python3-argcomplete.
+
+    sudo apt install python3-argcomplete
+    Setup your environment for ROS2
+    Great, ROS2 Foxy is now installed on your Raspberry Pi 4 with Ubuntu Server 20.04!
+
+    Now, in order to actually use ROS2, you’ll need to setup your environment every time you open a new session (terminal). To source your ROS2 installation in your environment, run source /opt/ros/foxy/setup.bash.
+
+    And because it won’t be that practical to do this for every new session you open, add this line to your bashrc.
+
+    echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
+    So, from now on, every time you open a terminal, your bashrc will be executed and your environment will be ready for ROS2.
+
+
