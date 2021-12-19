@@ -1,0 +1,37 @@
+[0.954s] Invoking command in '/home/ubuntu/MomoRobot/ros2/my_robot_tutorials': PYTHONPATH=/home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/my_robot_tutorials build --build-base /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/build install --prefix /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials --record /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/install.log --single-version-externally-managed
+[1.785s] running egg_info
+[1.788s] creating ../build/my_robot_tutorials/my_robot_tutorials.egg-info
+[1.788s] writing ../build/my_robot_tutorials/my_robot_tutorials.egg-info/PKG-INFO
+[1.789s] writing dependency_links to ../build/my_robot_tutorials/my_robot_tutorials.egg-info/dependency_links.txt
+[1.790s] writing entry points to ../build/my_robot_tutorials/my_robot_tutorials.egg-info/entry_points.txt
+[1.791s] writing requirements to ../build/my_robot_tutorials/my_robot_tutorials.egg-info/requires.txt
+[1.792s] writing top-level names to ../build/my_robot_tutorials/my_robot_tutorials.egg-info/top_level.txt
+[1.804s] writing manifest file '../build/my_robot_tutorials/my_robot_tutorials.egg-info/SOURCES.txt'
+[1.976s] reading manifest file '../build/my_robot_tutorials/my_robot_tutorials.egg-info/SOURCES.txt'
+[1.981s] writing manifest file '../build/my_robot_tutorials/my_robot_tutorials.egg-info/SOURCES.txt'
+[1.981s] running build
+[1.982s] running build_py
+[1.983s] creating /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/build
+[1.984s] creating /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/build/lib
+[1.985s] creating /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/build/lib/my_robot_tutorials
+[1.986s] copying my_robot_tutorials/__init__.py -> /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/build/lib/my_robot_tutorials
+[1.987s] copying my_robot_tutorials/py_python_node.py -> /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/build/lib/my_robot_tutorials
+[1.988s] running install
+[1.989s] running install_lib
+[1.995s] creating /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/lib/python3.8/site-packages/my_robot_tutorials
+[1.996s] copying /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/build/lib/my_robot_tutorials/__init__.py -> /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/lib/python3.8/site-packages/my_robot_tutorials
+[1.997s] copying /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/build/lib/my_robot_tutorials/py_python_node.py -> /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/lib/python3.8/site-packages/my_robot_tutorials
+[2.000s] byte-compiling /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/lib/python3.8/site-packages/my_robot_tutorials/__init__.py to __init__.cpython-38.pyc
+[2.005s] byte-compiling /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/lib/python3.8/site-packages/my_robot_tutorials/py_python_node.py to py_python_node.cpython-38.pyc
+[2.007s] running install_data
+[2.010s] creating /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/share/ament_index
+[2.013s] creating /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/share/ament_index/resource_index
+[2.014s] creating /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/share/ament_index/resource_index/packages
+[2.016s] copying resource/my_robot_tutorials -> /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/share/ament_index/resource_index/packages
+[2.016s] copying package.xml -> /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/share/my_robot_tutorials
+[2.017s] running install_egg_info
+[2.025s] Copying ../build/my_robot_tutorials/my_robot_tutorials.egg-info to /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/lib/python3.8/site-packages/my_robot_tutorials-0.0.0-py3.8.egg-info
+[2.032s] running install_scripts
+[2.121s] Installing minimal_python_node script to /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/lib/my_robot_tutorials
+[2.123s] writing list of installed files to '/home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/install.log'
+[2.218s] Invoked command in '/home/ubuntu/MomoRobot/ros2/my_robot_tutorials' returned '0': PYTHONPATH=/home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/my_robot_tutorials build --build-base /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/build install --prefix /home/ubuntu/MomoRobot/ros2/install/my_robot_tutorials --record /home/ubuntu/MomoRobot/ros2/build/my_robot_tutorials/install.log --single-version-externally-managed
